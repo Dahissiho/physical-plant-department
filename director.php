@@ -20,6 +20,7 @@ if($type == 'worker'){
 else if($type == 'supervisor'){
 	header ('Location: supervisor.php');
 }
+
 ?>
 
 <html>
@@ -57,6 +58,7 @@ else if($type == 'supervisor'){
         <h4 class="modal-title">SELECT THE DEPARTMENT</h4>
       </div>
       <div class="modal-body">
+	  <center>
         <button type="submit" name="btn_mas" class="btn_report">MASONRY</button>
 		<br>
 		<button type="submit" name="btn_elec" class="btn_report">ELECTRICALS</button>
@@ -66,6 +68,7 @@ else if($type == 'supervisor'){
 		<button type="submit" name="btn_car" class="btn_report">CARPENTRY</button>
 		<br>
 		<button type="submit" name="btn_oth" class="btn_report">OTHERS</button>
+		</center>
 		<br>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
@@ -77,14 +80,135 @@ else if($type == 'supervisor'){
 </div>
 </form>
 
+<?php
+	 if(isset($_POST['btn_mas'])){
+			$sql = "SELECT facility,location,date,telephone,work_type,description,remarks,officer FROM masonry ORDER BY Mid";
+$result = $connect->query($sql);
+if	($result->num_rows >0 )
+		echo"<center>
+	<h3>COMPLAINTS(MASONRY DEPARTMENT)</h3><br>
+	<table>
+<tr>
+<th>FACILITY</th>
+<th>LOCATION</th>
+<th>DATE</th>
+<th>TELEPHONE</th>
+<th>TYPE OF WORK</th>
+<th>WORK DESCRIPTION</th>
+<th>REMARKS</th>
+<th>OFFICER REQUESTING</th>
+</tr>";	
+while ($row = $result->fetch_assoc())
+    {
+		echo"<tr><td> ".$row["facility"]."</td><td>".$row["location"]."</td><td>".$row["date"]."</td><td>".$row["telephone"]."</td><td>".$row["work_type"]."</td><td>".$row["description"]."</td><td>".$row["remarks"]."</td><td>".$row["officer"]."</td></tr>";
+	}
+	echo "</center></table>";
+		}
+else if (isset($_POST['btn_elec'])){
+			$sql = "SELECT facility,location,date,telephone,work_type,description,remarks,officer FROM electricals ORDER BY Eid";
+$result = $connect->query($sql);
+if	($result->num_rows >0 )
+		echo"<center>
+	<h3>COMPLAINTS(ELECTRICAL DEPARTMENT)</h3><br>
+	<table>
+<tr>
+<th>FACILITY</th>
+<th>LOCATION</th>
+<th>DATE</th>
+<th>TELEPHONE</th>
+<th>TYPE OF WORK</th>
+<th>WORK DESCRIPTION</th>
+<th>REMARKS</th>
+<th>OFFICER REQUESTING</th>
+</tr>";	
+while ($row = $result->fetch_assoc())
+    {
+		echo"<tr><td> ".$row["facility"]."</td><td>".$row["location"]."</td><td>".$row["date"]."</td><td>".$row["telephone"]."</td><td>".$row["work_type"]."</td><td>".$row["description"]."</td><td>".$row["remarks"]."</td><td>".$row["officer"]."</td></tr>";
+	}
+	echo "</center></table>";
+		}
+else if(isset($_POST['btn_plu'])){
+			$sql = "SELECT facility,location,date,telephone,work_type,description,remarks,officer FROM plumbing ORDER BY Pid";
+$result = $connect->query($sql);
+if	($result->num_rows >0 )
+		echo"<center>
+	<h3>COMPLAINTS(PLUMBING DEPARTMENT)</h3><br>
+	<table>
+<tr>
+<th>FACILITY</th>
+<th>LOCATION</th>
+<th>DATE</th>
+<th>TELEPHONE</th>
+<th>TYPE OF WORK</th>
+<th>WORK DESCRIPTION</th>
+<th>REMARKS</th>
+<th>OFFICER REQUESTING</th>
+</tr>";	
+while ($row = $result->fetch_assoc())
+    {
+		echo"<tr><td> ".$row["facility"]."</td><td>".$row["location"]."</td><td>".$row["date"]."</td><td>".$row["telephone"]."</td><td>".$row["work_type"]."</td><td>".$row["description"]."</td><td>".$row["remarks"]."</td><td>".$row["officer"]."</td></tr>";
+	}
+	echo "</center></table>";
+		}
+else if(isset($_POST['btn_car'])){
+			$sql = "SELECT facility,location,date,telephone,work_type,description,remarks,officer FROM carpentry ORDER BY Cid";
+$result = $connect->query($sql);
+if	($result->num_rows >0 )
+		echo"<center>
+	<h3>COMPLAINTS(CARPENTRY DEPARTMENT)</h3><br>
+	<table>
+<tr>
+<th>FACILITY</th>
+<th>LOCATION</th>
+<th>DATE</th>
+<th>TELEPHONE</th>
+<th>TYPE OF WORK</th>
+<th>WORK DESCRIPTION</th>
+<th>REMARKS</th>
+<th>OFFICER REQUESTING</th>
+</tr>";	
+while ($row = $result->fetch_assoc())
+    {
+		echo"<tr><td> ".$row["facility"]."</td><td>".$row["location"]."</td><td>".$row["date"]."</td><td>".$row["telephone"]."</td><td>".$row["work_type"]."</td><td>".$row["description"]."</td><td>".$row["remarks"]."</td><td>".$row["officer"]."</td></tr>";
+	}
+	echo "</center></table>";
+		}
+else if(isset($_POST['btn_oth'])){
+			$sql = "SELECT facility,location,date,telephone,work_type,description,remarks,officer FROM others ORDER BY Oid";
+$result = $connect->query($sql);
+if	($result->num_rows >0 )
+		echo"<center>
+	<h3>COMPLAINTS(OTHERS)</h3><br>
+	<table>
+<tr>
+<th>FACILITY</th>
+<th>LOCATION</th>
+<th>DATE</th>
+<th>TELEPHONE</th>
+<th>TYPE OF WORK</th>
+<th>WORK DESCRIPTION</th>
+<th>REMARKS</th>
+<th>OFFICER REQUESTING</th>
+</tr>";	
+while ($row = $result->fetch_assoc())
+    {
+		echo"<tr><td> ".$row["facility"]."</td><td>".$row["location"]."</td><td>".$row["date"]."</td><td>".$row["telephone"]."</td><td>".$row["work_type"]."</td><td>".$row["description"]."</td><td>".$row["remarks"]."</td><td>".$row["officer"]."</td></tr>";
+	}
+	echo "</center></table>";
+		}	
+
+$connect->close();
+		?>
 </body>
 
 <style>
+nav{max-width:100%;}
 h1{
 	font-weight:bold;
 	color:white;
 }
-h4{
+h4,h3{
+	font-family: arial, sans-serif;
 	font-weight:bold;
 	text-align:center;
 	font-size:20px;
@@ -146,9 +270,52 @@ button[class=btn_report]{
 	width:25%;
 	 padding: 8px 20px;
     margin: 8px 10px;
-	
-	
+	 border: 2px solid #2196F3;
+    border-radius: 4px;
+	background-color:#2196F3;
+	color:white;
 }
+
+button[id=btnClose] {
+    background-color:#f62b2b;
+    color: white;
+    border-radius: 4px;
+	 font-weight:bold;
+}
+button[id=btnClose]:hover{
+      background-color:#f80707;
+	  color:white;
+    }
+	.close {
+    color:white;
+    float: right;
+    font-size: 25px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #f80707;
+    text-decoration: none;
+    cursor: pointer;
+}
+table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width:95%;
+				text-align:center;
+				font-size:14px;
+				
+            }
+
+            td, th {
+                border: 2px solid black;
+                text-align: center;
+                padding: 8px;
+				
+            }
+			 tr:nth-child(even) {
+                background-color: white;
+                     }
 </style>
 
 </html>
