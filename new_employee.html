@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>register employee</title>
+ <script type="text/javascript">
+        var date = new Date();
+		var year = date.getFullYear();
+		
+		var d = document.getElementById("date").value = year;
+		
+		function createID(){
+		    var id = document.getElementById("ID")
+			id.innerHTML = <h3>uuu</h3>
+			alert("ok");
+			}
+        </script>
+<style type="text/css">
+
+
+
+input[type=text] {
+	alignment-adjust:before-edge;
+	margin-left:40px;
+	height:50px;
+    width: 235px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    background-color: white;
+     
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=submit] {
+	margin-left:80px;
+	height:45px;
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    background-color: white;
+     
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#jobs{
+	border: 2px solid #ccc;
+    border-radius: 4px;
+	box-sizing: border-box;
+	position:relative;
+	margin-top:100PX;
+	margin-left:50PX
+	}
+	
+	
+</style>
+</head>
+
+<body>
+<table  width="100%" height="10%">
+<tr style="background-color:#FFC">
+<td><div align="center"><h2>PHYSICAL PLANT DEPARTMENT</h2></div></td>
+</tr>
+</table>
+
+<ul>
+  <li><a href="supervisor page.html">Home</a></li>
+
+
+  <li style="float:right"><a class="active" href="#about">About</a></li>
+</ul>
+</br>
+<form action="new_employee.php" method="post">
+<div  class="align" align="center">
+  <table width="80%" height="80%" border="0" cellspacing="1" cellpadding="10">
+    <tr>
+      <th width="19%"><h2>Last name :</h2></th>
+          <th width="34%"><input width="" type="text" name="Lname" required="required"/></th>
+      
+      <th width="7%" scope="col"><h2>ID :</h2></th>
+          <th width="34%"><input type="text" name="ID" onclick="createID()" required="required" contenteditable="false"/></th>
+      <td width="3%"></th>
+    </tr>
+    <tr>
+      <th><h2>First name :</h2></th>
+        <th><input type="text" name="Fname" required="required"/></th>
+      
+    </tr>
+    <tr>
+      <th><h2>Departement :</h2></th>
+        <th><input type="text" name="Department" required="required"/></th>
+      
+    </tr>
+    <tr>
+      <th><h2>Date of birth :</h2></th>
+        <th><input type="text" name="DoB" required="required"/></th>
+   
+    </tr>
+    <tr>
+      <th><h2>Email :</h2></th>
+        
+          <th><input type="text" name="Email" required="required"/></th>
+      
+    </tr>
+    <tr>
+      <th><h2>Telephone :</h2></th>
+        <th><input type="text" name="Telephone" required="required"/></th>
+      
+      
+    </tr>
+    
+    <tr>
+      <th><h2>Password:</h2></th>
+        <th><input type="text" name="Password" required="required"/></th>
+      
+      <th>&nbsp;</th>
+      <th><input type="submit"  value="SUBMIT"  /></th>
+      
+    </tr>
+    <tr>
+          <th><input type="text" name="Date" hidden=""/></th>
+    </tr>
+  </table>
+</div>
+</form>
+</body>
+</html>
