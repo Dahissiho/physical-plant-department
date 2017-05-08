@@ -1,44 +1,6 @@
-<<<<<<< HEAD
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head >
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>complaint</title>
-<script type="text/javascript" src="getdepartment.js" language="javascript"></script>
-<style>
-th{
-	background-color:#FFC;
-	border: 2px solid #ccc;
-    border-radius: 4px;
-	box-sizing: border-box;
-	position:relative;
-	padding: 90px 130px;
-	}
-	
-	</style>
-</head>
-
-<body onload="setdep()">
-<P>WRITE COMPLAINT</P>
-<p align="right" id="dep"></p>
-<table width="694" height="321" cellpadding="10" cellspacing="1">
-  <tr>
-    <th  scope="col">&nbsp;</th>
-  </tr>
-</table>
-<p>LOCATION :</p>
-<table width="691" height="26"  cellpadding="10" cellspacing="1">
-  <tr>
-    <th scope="col">&nbsp;</th>
-  </tr>
-</table>
-<p>&nbsp;</p>
-</body>
-</html>
-=======
 <?php
 session_start();
-$connect=mysqli_connect('localhost','root','root','physical');
+$connect=mysqli_connect('localhost','root','','physicalplantdb');
 if(!$connect){
 	echo"No connection";
 	exit();
@@ -52,16 +14,20 @@ if(!$connect){
 	$description=$_POST['description'];
 	$remarks=$_POST['remarks'];
 	$officer=$_POST['officer'];
+	$department='mansonry';
+	$id = $_POST['id'];
 	
-	$sql= "INSERT INTO masonry (facility,location,date,telephone,work_type,description,remarks,officer) 
-	VALUES ('$facility','$location','$date','$telephone','$type','$description','$remarks','$officer')";
+	$sql= "INSERT INTO jobs (Facility,Location,Date,Telephone,Work_type,Description,Remarks,Officer,ID,Department) 
+	VALUES ('$facility','$location','$date','$telephone','$type','$description','$remarks','$officer','$id','$department')";
 	
 	if (mysqli_query($connect,$sql)){
 
 echo "<script>alert('Your Complaint Has Successfully been Sent!');</script>";
 }
 else{
-echo "<script>alert('Oops an Error occured!');</script>";
+printf("the error is: %s\n",mysqli_error($connect));
+echo mysqli_errno();
+/*echo "<script>alert('Oops an Error occured!');</script>";*/
 }
 	}
 else if(isset($_POST['elecSubmit'])){
@@ -74,15 +40,19 @@ else if(isset($_POST['elecSubmit'])){
 	$description=$_POST['description'];
 	$remarks=$_POST['remarks'];
 	$officer=$_POST['officer'];
+	$department='electrical';
+	$id = $_POST['id'];
 	
-	$sql= "INSERT INTO electricals (facility,location,date,telephone,work_type,description,remarks,officer) 
-	VALUES ('$facility','$location','$date','$telephone','$type','$description','$remarks','$officer')";
+	$sql= "INSERT INTO jobs (Facility,Location,Date,Telephone,Work_type,Description,Remarks,Officer,ID,Department) 
+	VALUES ('$facility','$location','$date','$telephone','$type','$description','$remarks','$officer','$id','$department')";
 	
 	if (mysqli_query($connect,$sql)){
 
 echo "<script>alert('Your Complaint Has Successfully been Sent!');</script>";
 }
 else{
+	printf("the error is: %s\n",mysqli_error($connect));
+echo mysqli_errno();
 echo "<script>alert('Oops an Error occured!');</script>";
 }
 	}
@@ -96,9 +66,11 @@ else if(isset($_POST['plumbSubmit'])){
 	$description=$_POST['description'];
 	$remarks=$_POST['remarks'];
 	$officer=$_POST['officer'];
+	$department='plumbing';
+	$id = $_POST['id'];
 	
-	$sql= "INSERT INTO plumbing (facility,location,date,telephone,work_type,description,remarks,officer) 
-	VALUES ('$facility','$location','$date','$telephone','$type','$description','$remarks','$officer')";
+	$sql= "INSERT INTO jobs (Facility,Location,Date,Telephone,Work_type,Description,Remarks,Officer,ID,Department) 
+	VALUES ('$facility','$location','$date','$telephone','$type','$description','$remarks','$officer','$id','$department')";
 	
 	if (mysqli_query($connect,$sql)){
 
@@ -118,15 +90,19 @@ else if(isset($_POST['carpSubmit'])){
 	$description=$_POST['description'];
 	$remarks=$_POST['remarks'];
 	$officer=$_POST['officer'];
+	$department='carpentry';
+	$id = $_POST['id'];
 	
-	$sql= "INSERT INTO carpentry(facility,location,date,telephone,work_type,description,remarks,officer) 
-	VALUES ('$facility','$location','$date','$telephone','$type','$description','$remarks','$officer')";
+	$sql= "INSERT INTO jobs (Facility,Location,Date,Telephone,Work_type,Description,Remarks,Officer,ID,Department) 
+	VALUES ('$facility','$location','$date','$telephone','$type','$description','$remarks','$officer','$id','$department')";
 	
 	if (mysqli_query($connect,$sql)){
 
 echo "<script>alert('Your Complaint Has Successfully been Sent!');</script>";
 }
 else{
+	printf("the error is: %s\n",mysqli_error($connect));
+echo mysqli_errno();
 echo "<script>alert('Oops an Error occured!');</script>";
 }
 	}
@@ -140,15 +116,22 @@ else if(isset($_POST['otherSubmit'])){
 	$description=$_POST['description'];
 	$remarks=$_POST['remarks'];
 	$officer=$_POST['officer'];
+	$department='not specified';
+	$id = $_POST['id'];
 	
-	$sql= "INSERT INTO others (facility,location,date,telephone,work_type,description,remarks,officer) 
-	VALUES ('$facility','$location','$date','$telephone','$type','$description','$remarks','$officer')";
+	
+	
+	$sql= "INSERT INTO jobs (Facility,Location,Date,Telephone,Work_type,Description,Remarks,Officer,ID,Department) 
+	VALUES ('$facility','$location','$date','$telephone','$type','$description','$remarks','$officer','$id','$department')";
 	
 	if (mysqli_query($connect,$sql)){
 
 echo "<script>alert('Your Complaint Has Successfully been Sent!');</script>";
 }
 else{
+	
+	printf("the error is: %s\n",mysqli_error($connect));
+echo mysqli_errno();
 echo "<script>alert('Oops an Error occured!');</script>";
 }
 }
@@ -162,17 +145,35 @@ echo "<script>alert('Oops an Error occured!');</script>";
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
 <title>Complaint Page</title>
+
+<script type="text/javascript">
+function createID(){
+	var date = new Date();
+		var year = date.getFullYear();
+		var time = date.getTime();
+		var id = year + time;
+		
+		document.getElementById('id').value = id;
+		alert(id);
+	}
+</script>
+
 </head>
 <body>
+<table  width="100%" height="10%">
+<tr style="background-color:#FFC">
+<td><div align="center"><h2>PHYSICAL PLANT DEPARTMENT</h2></div></td>
+</tr>
+</table>
 <nav id="top_menu">
 
 <ul>
-<header><h1>PHYSICAL PLANT DEPARTMENT</h1></header>
-<li> <a href="index.php">HOME</a></li>
+
+<li> <a href="first inter new.html">HOME</a></li>
 </ul>
 </nav>
 <center>
-<br><br>
+<br><br><br><br>
 <div id="main">
 <h2>SELECT THE DEPARTMENT</h2>
 <form name="masonry" method="POST">
@@ -190,19 +191,19 @@ echo "<script>alert('Oops an Error occured!');</script>";
       </div>
       <div class="modal-body">
         <label>FACILITY</label>
-		<input type="text" name="facility" pattern="[A-Za-z]" required autofocus/>
+		<input type="text" name="facility" required autofocus/>
 		<br>
 		<label>LOCATION</label>
-		<input type="text" name="location" pattern="[A-Za-z]" required />
+		<input type="text" name="location" required />
 		<br>
 		<label>DATE</label>
 		<input type="date" name="date" required/>
 		<br>
 		<label>TELEPHONE</label>
-		<input type="tel" name="telephone" pattern="[0-9]{10}" title="Please Enter A Correct Telephone Number" required/>
+		<input type="tel" name="telephone"  title="Please Enter A Correct Telephone Number" required/>
 		<br>
 		<label>TYPE OF WORK</label>
-		<input type="text" name="type" pattern="[A-Za-z]" list="types" required/>
+		<input type="text" name="type" list="types" required/>
 		<datalist id="types">
 		<option value="Walls"/>
 		<option value="Tiling"/>
@@ -210,16 +211,18 @@ echo "<script>alert('Oops an Error occured!');</script>";
 		</datalist>
 		<br><br>
 		<label>WORK DESCRIPTION</label>
-		<textarea name="description" rows="4" cols="30" pattern="[A-Za-z]" required></textarea>
+		<textarea name="description" rows="4" cols="30" required></textarea>
 		<br>
 		<label>REMARKS</label>
-		<input type="text" name="remarks" pattern="[A-Za-z]" required/>
+		<input type="text" name="remarks" required/>
 		<br>
 		<label>OFFICER REQUESTING(LASTNAME)</label>
-		<input type="text" name="officer" pattern="[A-Za-z]" required/>
+		<input type="text" name="officer" onClick="createID()" required/>
 		<br>
+        <input type="hidden" id="id" name="id" value=""  />
       </div>
       <div class="modal-footer">
+	  <br>
         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-default" id="masonSubmit" name="masonSubmit">Submit</button>
       </div>
@@ -242,19 +245,19 @@ echo "<script>alert('Oops an Error occured!');</script>";
       </div>
       <div class="modal-body">
         <label>FACILITY</label>
-		<input type="text" name="facility" pattern="[A-Za-z]" required autofocus/>
+		<input type="text" name="facility" required autofocus/>
 		<br>
 		<label>LOCATION</label>
-		<input type="text" name="location" pattern="[A-Za-z]" required />
+		<input type="text" name="location" required />
 		<br>
 		<label>DATE</label>
 		<input type="date" name="date" required/>
 		<br>
 		<label>TELEPHONE</label>
-		<input type="tel" name="telephone" pattern="[0-9]{10}" title="Please Enter A Correct Telephone Number" required/>
+		<input type="tel" name="telephone"  title="Please Enter A Correct Telephone Number" required/>
 		<br>
 		<label>TYPE OF WORK</label>
-		<input type="text" name="type" list="Etypes" pattern="[A-Za-z]" required/>
+		<input type="text" name="type" list="Etypes" required/>
 		<datalist id="Etypes">
 		<option value="Lighting"/>
 		<option value="Socket"/>
@@ -262,14 +265,15 @@ echo "<script>alert('Oops an Error occured!');</script>";
 		</datalist>
 		<br>
 		<label>WORK DESCRIPTION</label>
-		<textarea name="description" rows="4" cols="30" pattern="[A-Za-z]" required></textarea>
+		<textarea name="description" rows="4" cols="30" required></textarea>
 		<br>
 		<label>REMARKS</label>
-		<input type="text" name="remarks" pattern="[A-Za-z]" required/>
+		<input type="text" name="remarks" required/>
 		<br>
 		<label>OFFICER REQUESTING(LASTNAME)</label>
-		<input type="text" name="officer" pattern="[A-Za-z]" required/>
+		<input type="text" name="officer" onClick="createID()" required/>
 		<br>
+        <input type="hidden" id="id" name="id" value=""  />
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
@@ -294,19 +298,19 @@ echo "<script>alert('Oops an Error occured!');</script>";
       </div>
       <div class="modal-body">
         <label>FACILITY</label>
-		<input type="text" name="facility" pattern="[A-Za-z]" required autofocus/>
+		<input type="text" name="facility" required autofocus/>
 		<br>
 		<label>LOCATION</label>
-		<input type="text" name="location" pattern="[A-Za-z]" required />
+		<input type="text" name="location" required />
 		<br>
 		<label>DATE</label>
 		<input type="date" name="date" required/>
 		<br>
 		<label>TELEPHONE</label>
-		<input type="tel" name="telephone" pattern="[0-9]{10}" title="Please Enter A Correct Telephone Number" required/>
+		<input type="tel" name="telephone"  title="Please Enter A Correct Telephone Number" required/>
 		<br>
 		<label>TYPE OF WORK</label>
-		<input type="text" name="type" list="Ptypes" pattern="[A-Za-z]" required/>
+		<input type="text" name="type" list="Ptypes" required/>
 		<datalist id="Ptypes">
 		<option value="Water Closet"/>
 		<option value="Wash Hand Basin"/>
@@ -314,14 +318,15 @@ echo "<script>alert('Oops an Error occured!');</script>";
 		</datalist>
 		<br>
 		<label>WORK DESCRIPTION</label>
-		<textarea name="description" rows="4" cols="30" pattern="[A-Za-z]" required></textarea>
+		<textarea name="description" rows="4" cols="30" required></textarea>
 		<br>
 		<label>REMARKS</label>
-		<input type="text" name="remarks" pattern="[A-Za-z]" required/>
+		<input type="text" name="remarks" required/>
 		<br>
 		<label>OFFICER REQUESTING(LASTNAME)</label>
-		<input type="text" name="officer" pattern="[A-Za-z]" required/>
+		<input type="text" name="officer" onClick="createID()" required/>
 		<br>
+        <input type="hidden" id="id" name="id" value=""  />
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
@@ -346,19 +351,19 @@ echo "<script>alert('Oops an Error occured!');</script>";
       </div>
       <div class="modal-body">
         <label>FACILITY</label>
-		<input type="text" name="facility" pattern="[A-Za-z]" required autofocus/>
+		<input type="text" name="facility" required autofocus/>
 		<br>
 		<label>LOCATION</label>
-		<input type="text" name="location" pattern="[A-Za-z]" required />
+		<input type="text" name="location" required />
 		<br>
 		<label>DATE</label>
 		<input type="date" name="date" required/>
 		<br>
 		<label>TELEPHONE</label>
-		<input type="tel" name="telephone" pattern="[0-9]{10}" title="Please Enter A Correct Telephone Number" required/>
+		<input type="tel" name="telephone"  title="Please Enter A Correct Telephone Number" required/>
 		<br>
 		<label>TYPE OF WORK</label>
-		<input type="text" name="type" list="Ctypes" pattern="[A-Za-z]" required/>
+		<input type="text" name="type" list="Ctypes" required/>
 		<datalist id="Ctypes">
 		<option value="Doors"/>
 		<option value="Window/Louvers"/>
@@ -366,14 +371,15 @@ echo "<script>alert('Oops an Error occured!');</script>";
 		</datalist>
 		<br>
 		<label>WORK DESCRIPTION</label>
-		<textarea name="description" rows="4" cols="30" pattern="[A-Za-z]" required></textarea>
+		<textarea name="description" rows="4" cols="30" required></textarea>
 		<br>
 		<label>REMARKS</label>
-		<input type="text" name="remarks" pattern="[A-Za-z]" required/>
+		<input type="text" name="remarks" required/>
 		<br>
 		<label>OFFICER REQUESTING(LASTNAME)</label>
-		<input type="text" name="officer" pattern="[A-Za-z]" required/>
+		<input type="text" name="officer" onClick="createID()" required/>
 		<br>
+        <input type="hidden" id="id" name="id" value=""  />
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
@@ -398,29 +404,30 @@ echo "<script>alert('Oops an Error occured!');</script>";
       </div>
       <div class="modal-body">
         <label>FACILITY</label>
-		<input type="text" name="facility" pattern="[A-Za-z]" required autofocus/>
+		<input type="text" name="facility" required autofocus/>
 		<br>
 		<label>LOCATION</label>
-		<input type="text" name="location" pattern="[A-Za-z]" required />
+		<input type="text" name="location" required />
 		<br>
 		<label>DATE</label>
 		<input type="date" name="date" required/>
 		<br>
 		<label>TELEPHONE</label>
-		<input type="tel" name="telephone" pattern="[0-9]{10}"  title="Please Enter A Correct Telephone Number" required/>
+		<input type="tel" name="telephone"  title="Please Enter A Correct Telephone Number" required/>
 		<br>
 		<label>TYPE OF WORK</label>
-		<input type="text" name="type" pattern="[A-Za-z]"required/>
+		<input type="text" name="type"required/>
 		<br>
 		<label>WORK DESCRIPTION</label>
-		<textarea name="description" rows="4" cols="30" pattern="[A-Za-z]" required></textarea>
+		<textarea name="description" rows="4" cols="30" required></textarea>
 		<br>
 		<label>REMARKS</label>
-		<input type="text" name="remarks" pattern="[A-Za-z]" required/>
+		<input type="text" name="remarks" required/>
 		<br>
 		<label>OFFICER REQUESTING(LASTNAME)</label>
-		<input type="text" name="officer" pattern="[A-Za-z]" required/>
+		<input type="text" name="officer" onClick="createID()" required/>
 		<br>
+        <input type="hidden" id="id" name="id" value=""  />
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
@@ -432,35 +439,35 @@ echo "<script>alert('Oops an Error occured!');</script>";
 </div>
 </div>
 </form>
+
 </center>
 </body>
 
 <style>
-
 textarea[name=description]{
 	width:50%;
 	display: inline-block;
     border: 2px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-	font-family:"Tahoma";
-	  font-size:12px;
+	font-family:"Times New Roman";
+	font-size:20px;
 }
 
 div[id=main]{
-	padding-top:2px;
-	max-width:620px;
+	padding-top:20px;
+	max-width:720px;
 	background-color:#fff;
 	border:2px solid rgba(0,0,0,0.1);
-	padding:2px 15px 15px;
+	padding:15px 35px 45px;
 	margin:0 auto;
-	height:500px;
+	height:620px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .close {
     color:white;
     float: right;
-    font-size: 25px;
+    font-size: 50px;
     font-weight: bold;
 }
 
@@ -470,22 +477,22 @@ div[id=main]{
     text-decoration: none;
     cursor: pointer;
 }
-.modal-header {
+	.modal-header {
     padding: 12px 16px;
     background-color:#2196F3;
     color: white;
 }
 
 .modal-body {
-	padding: 2px 10px;
+	padding: 2px 16px;
 	}
 
 
 h2{line-height: 1.8;
-font-size:25px;
+font-size:30px;
 font-weight:bold;
 }
-h4{ font-size:16px; font-family:"Times New Roman";font-weight:bold;}
+h4{ font-size:25px; font-family:"Times New Roman";font-weight:bold;}
 h1{
 	font-weight:bold;
 	text-align:center;
@@ -495,14 +502,13 @@ input{
       width:50%;
    -webkit-box-flex:1;
     padding: 8px 20px;
-    margin: 8px 0;
+    margin: 12px 0;
     display: inline-block;
     border: 2px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-	font-family:"Tahoma";
-	  font-size:14px;
-	 
+	font-family:"Times New Roman";
+	  font-size:20px;
 }
 
 
@@ -511,12 +517,12 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-	background-color: #111;
+	background-color: #333;
 	overflow: hidden;
 }
 li {
     float: left;
-	font-size:12px;
+	font-size:16px;
 }
 li a {
 	font-family:"Tahoma";
@@ -524,7 +530,7 @@ li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 4px 12px;
+    padding: 14px 16px;
     text-decoration: none;
 }
 .active {
@@ -548,7 +554,7 @@ li a:hover {
 label{
 	font-family:"Tahoma";
 	padding-right:10px;
-	font-size:12px;
+	font-size:15px;
 	width:190px;
 	
 	
@@ -559,25 +565,39 @@ button[class=btn]{
 	 width:50%;
 	  -webkit-box-flex:1;
     padding: 14px 20px;
-    margin: 10px 0;
+    margin: 16px 0;
     display: inline-block;
-    border: 2px solid black;
+    border: 2px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 	font-family:"Times New Roman";
-	  font-size:12px;
+	  font-size:20px;
 	  font-weight:bold;
 }
  button[id=elecSubmit],button[id=masonSubmit],button[id=plumbSubmit],button[id=carpSubmit],button[id=otherSubmit] {
+	padding-top: 20px;
     background-color: #4CAF50;
+    -webkit-box-flex:1;
     color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
     border-radius: 4px;
-	font-weight:bold;
+    cursor: pointer;
+     box-sizing: border-box;
+	 font-weight:bold;
 }
 button[id=btnClose] {
+  padding-top: 20px;
     background-color:#f62b2b;
+    -webkit-box-flex:1;
     color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
     border-radius: 4px;
+    cursor: pointer;
+     box-sizing: border-box;
 	 font-weight:bold;
 }
 button[id=btnClose]:hover{
@@ -591,4 +611,3 @@ button[id=btnClose]:hover{
 
 </style>
 </html>
->>>>>>> origin/master
